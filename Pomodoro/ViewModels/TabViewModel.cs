@@ -54,7 +54,6 @@ namespace Pomodoro.ViewModels
         }
 
 
-        private Visibility visibility;
 
         public Visibility StartVisibility
         {

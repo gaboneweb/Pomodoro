@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pomodoro.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,21 @@ using System.Windows.Shapes;
 
 namespace Pomodoro
 {
-    /// Interaction logic for TabView.xaml
+    /// <summary>
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class TabView : UserControl
+    public partial class SettingsView : Window
     {
-        public TabView()
+        public SettingsView()
         {
             InitializeComponent();
+            DataContext = SettingsViewModel.GetInstance();
+        }
+
+        public SettingsView(SettingsViewModel settings)
+        {
+            InitializeComponent();
+            DataContext = settings;
         }
     }
 }

@@ -6,11 +6,14 @@ namespace Pomodoro.Utils
     public class DelegateCommand: ICommand
     {
         public Action canExcute;
+        public Action<object> canExcuteObj;
         public DelegateCommand(Action execute) {
             canExcute = execute;
         }
 
-        public DelegateCommand(Action<object> add) { }
+        public DelegateCommand(Action<object> execute) {
+            canExcuteObj = execute;    
+        }
 
         public event EventHandler CanExecuteChanged;
 
@@ -19,7 +22,15 @@ namespace Pomodoro.Utils
         }
 
         public virtual void Execute(object parameter) {
-            canExcute();
+            if(parameter == null)
+            {
+                canExcute();
+            }
+            else
+            {
+                canExcuteObj(parameter);
+            }
+            
         }
     }
 }

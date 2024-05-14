@@ -1,0 +1,39 @@
+﻿<Window x:Class="Pomodoro.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pomodoro"
+             mc:Ignorable="d" 
+             Title="Settings" Width="400" Height="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Pomodoro Duration"/>
+        <TextBox Grid.Row="0" Grid.Column="2"  Text="{Binding MySettings.PomodoroTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="ShortBreak Duration"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding MySettings.ShortBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+        
+        <Label Grid.Row="4" Grid.Column="0" Content="LongBreak Duration"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding MySettings.LongBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+
+
+        <Button Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Command="{Binding SaveCommand}" Width="150"  Content="Save" Margin="0,0,0,0"/>
+    </Grid>
+</Window>

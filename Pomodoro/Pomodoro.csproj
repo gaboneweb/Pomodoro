@@ -10,4 +10,10 @@
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\.nuget\packages\materialdesignthemes\5.0.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
