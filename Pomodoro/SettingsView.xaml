@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Pomodoro"
              mc:Ignorable="d" 
              SizeToContent="Height"
+             Name="settingsView"
              Title="Settings" Width="400" Height="Auto" >
     <Grid>
         <Grid.RowDefinitions>
@@ -35,6 +36,6 @@
         <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding MySettings.LongBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
 
 
-        <Button Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Command="{Binding SaveCommand}" Width="150" Height="35"  Content="Save" Margin="0,0,0,0"/>
+        <Button Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" CommandParameter="{x:Reference Name=settingsView}" Command="{Binding SaveCommand}" Width="150" Height="35"  Content="Save" Margin="0,0,0,0"/>
     </Grid>
 </Window>

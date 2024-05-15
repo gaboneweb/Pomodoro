@@ -73,10 +73,11 @@ namespace Pomodoro.ViewModels
 
         #endregion
         #region methods
-        private void SaveSettings()
+        private void SaveSettings(object obj)
         {
+            SettingsView settingsView = obj as SettingsView;
             this.Save();
-            MessageBox.Show("Settings Updated");
+            settingsView.Close();
         }
         public void LoadSettings()
         {
