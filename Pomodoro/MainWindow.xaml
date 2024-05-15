@@ -16,6 +16,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="mainWindow"
+        WindowStartupLocation="CenterScreen"
         Title="Pomodoro" Height="500" Width="400">
     <Grid>
         <Grid.RowDefinitions>

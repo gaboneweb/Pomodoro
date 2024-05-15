@@ -19,9 +19,25 @@ namespace Pomodoro.ViewModels
         private ObservableCollection<TabViewModel> tabs;
         private SettingsViewModel settings;
         private int _selected;
+        private bool settingsOpen;
         #endregion
 
         #region Properties
+      
+
+        public bool SettingsOpen
+        {
+            get { return settingsOpen; }
+            set
+            {
+                if (settingsOpen != value)
+                {
+                    settingsOpen = value;
+                    OnPropertyChanged(nameof(SettingsOpen));
+                }
+            }
+        }
+
         public TabViewModel Tab
         {
             get { return tab; }
@@ -81,6 +97,7 @@ namespace Pomodoro.ViewModels
             Settings = SettingsViewModel.GetInstance();
             CreateTabs();
             Selected = 0;
+            SettingsOpen = false;
         }
         #region Commands
         public ICommand ViewSettingsCommand { get{ return new DelegateCommand(ViewSettings); } }
@@ -89,10 +106,12 @@ namespace Pomodoro.ViewModels
         #region methods
         private void ViewSettings(object obj)
         {
+
             SettingsView settingView = new SettingsView(Settings);
             settingView.Owner = obj as Window;
             settingView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            settingView.Show();
+            settingView.ShowDialog();
+            
         }
     
         private void CreateTabs()
