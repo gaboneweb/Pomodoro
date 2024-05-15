@@ -77,7 +77,7 @@ namespace Pomodoro.ViewModels
         {
             SettingsView settingsView = obj as SettingsView;
             this.Save();
-            settingsView.Close();
+            settingsView.Close(); 
         }
         public void LoadSettings()
         {

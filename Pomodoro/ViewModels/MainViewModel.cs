@@ -101,6 +101,7 @@ namespace Pomodoro.ViewModels
         }
         #region Commands
         public ICommand ViewSettingsCommand { get{ return new DelegateCommand(ViewSettings); } }
+        public ICommand RefreshCommand { get { return new DelegateCommand(RefreshTabs); }}
         #endregion
 
         #region methods
