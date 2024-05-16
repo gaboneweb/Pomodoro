@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Timers;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Pomodoro.Utils;
@@ -18,7 +17,7 @@ namespace Pomodoro.ViewModels
         private string name;
         private string visibleTime;
         private CurrentTime currentTime;
-        private Timer timer;
+        private DispatcherTimer timer;
         private Visibility startVisibilty;
         private Visibility stopVisibilty;
         private string message;
@@ -96,7 +95,7 @@ namespace Pomodoro.ViewModels
             }
         }
 
-        public Timer Timer
+        public DispatcherTimer Timer
         {
             get { return timer; }
             set
@@ -132,26 +131,26 @@ namespace Pomodoro.ViewModels
             VisibleTime = CurrentTime.ToString();
             Message = message;
             Name = name;
-            Timer = new Timer(1000);
-
-            Timer.Elapsed += Timer_Elapsed;
-            Timer.AutoReset = true;
+            Timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            Timer.Tick += DispatherTimer_Tick;
             StartVisibility = Visibility.Visible;
             StopVisibility = Visibility.Collapsed;
         }
-
-
         #endregion
 
 
         #region events
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void DispatherTimer_Tick(object sender, EventArgs e)
         {
             if (!CurrentTime.IsOver())
             {
                 CurrentTime.DecreaseTime();
                 VisibleTime = CurrentTime.ToString();
             }
+
         }
         #endregion
 
@@ -184,7 +183,7 @@ namespace Pomodoro.ViewModels
 
         public bool IsRunning()
         {
-            return Timer.Enabled;
+            return Timer.IsEnabled;
         }
 
 

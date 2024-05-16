@@ -36,14 +36,14 @@
                 </Style>
             </TabControl.Resources>
             <TabControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type viewsModels:TabViewModel}">
+                <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="23" Text="{Binding Name}"/>
                     </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
-                <DataTemplate DataType="{x:Type viewsModels:TabViewModel}">
+                <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
