@@ -131,9 +131,10 @@ namespace Pomodoro.ViewModels
             VisibleTime = CurrentTime.ToString();
             Message = message;
             Name = name;
-            Timer = new DispatcherTimer
+            Timer = new DispatcherTimer(DispatcherPriority.DataBind)
             {
                 Interval = TimeSpan.FromSeconds(1)
+        
             };
             Timer.Tick += DispatherTimer_Tick;
             StartVisibility = Visibility.Visible;
