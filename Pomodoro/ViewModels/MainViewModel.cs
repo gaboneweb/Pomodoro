@@ -90,12 +90,17 @@ namespace Pomodoro.ViewModels
         #endregion
 
         #region events
+        private void CurrTab_TimerDone(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         public MainViewModel()
         {
             
             Settings = SettingsViewModel.GetInstance();
             CreateTabs();
+            SubscribeToTimerDoneEvent();
             Selected = 0;
             SettingsOpen = false;
         }
@@ -122,6 +127,16 @@ namespace Pomodoro.ViewModels
             Tabs.Add(new TabViewModel("Short Break", Settings.MySettings.ShortBreakTime, "Its time to take a short break!!"));
             Tabs.Add(new TabViewModel("Long Break", Settings.MySettings.LongBreakTime, "Its time to takes a long break!!"));
         }
+
+        private void SubscribeToTimerDoneEvent()
+        {
+            foreach (TabViewModel currTab in Tabs)
+            {
+                currTab.TimerDone += CurrTab_TimerDone;
+            }
+        }
+
+
 
         private void RefreshTabs()
         {

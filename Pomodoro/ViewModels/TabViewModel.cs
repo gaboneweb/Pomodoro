@@ -21,6 +21,7 @@ namespace Pomodoro.ViewModels
         private Visibility startVisibilty;
         private Visibility stopVisibilty;
         private string message;
+        private int currentTomato;
         #endregion
 
 
@@ -52,6 +53,21 @@ namespace Pomodoro.ViewModels
                 }
             }
         }
+
+
+        public int CurrentTomato
+        {
+            get { return currentTomato; }
+            set
+            {
+                if (currentTomato != value)
+                {
+                    currentTomato = value;
+                    OnPropertyChanged(nameof(CurrentTomato));
+                }
+            }
+        }
+
 
 
 
@@ -151,8 +167,15 @@ namespace Pomodoro.ViewModels
                 CurrentTime.DecreaseTime();
                 VisibleTime = CurrentTime.ToString();
             }
+            else
+            {
+                OnTimerDone();
+            }
 
         }
+
+        public delegate void TimerDoneEventHandler(object sender, EventArgs e);
+        public event TimerDoneEventHandler TimerDone;
         #endregion
 
 
@@ -171,6 +194,13 @@ namespace Pomodoro.ViewModels
             Timer.Stop();
         }
 
+         protected virtual void OnTimerDone()
+        {
+            if(TimerDone != null)
+            {
+                TimerDone(this, EventArgs.Empty);
+            }
+        }
         public void StartTimer()
         {
             if (!IsRunning())

@@ -24,11 +24,15 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Command="{Binding RefreshCommand}" Content="Refresh"/>
-            <Button CommandParameter="{x:Reference Name=mainWindow}" Command="{Binding ViewSettingsCommand}"  Content="Settings"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Button Width="Auto" Height="30" Command="{Binding RefreshCommand}" Content="Refresh" Margin="0,0,10,0"/>
+            <Button Width="Auto" Height="30" CommandParameter="{x:Reference Name=mainWindow}" Command="{Binding ViewSettingsCommand}"  Content="Settings"/>
         </StackPanel>
-        <TabControl Grid.Row="1" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding Tabs}" SelectedIndex="{Binding Selected,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" >
+        <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding Tabs}" SelectedIndex="{Binding Selected,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" >
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabPanel}">
                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -49,12 +53,15 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="1" FontSize="100" TextAlignment="Center" Width="Auto" Height="Auto" Text="{Binding VisibleTime, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" />
                         <Button Grid.Row="2" Height="50" Visibility="{Binding StartVisibility,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Command="{Binding StartCommand}" Width="150" Content="Start"/>
                         <Button Grid.Row="2" Height="50" Visibility="{Binding StopVisibility,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Command="{Binding StopCommand}" Width="150" Content="Stop"/>
-                        <TextBlock Grid.Row="3" HorizontalAlignment="Center" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Width="Auto"/>
+                        <TextBlock Grid.Row="3" HorizontalAlignment="Center" Text="{Binding CurrentTomato,StringFormat='#{0}', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Width="Auto"/>
+                        <TextBlock Grid.Row="4" HorizontalAlignment="Center" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Width="Auto"/>
+                                                                                                     
                     </Grid>
                 </DataTemplate>
             </TabControl.ContentTemplate>
