@@ -22,11 +22,25 @@ namespace Pomodoro.ViewModels
         private Visibility stopVisibilty;
         private string message;
         private int currentTomato;
+        private PomodoroTypes tabType;
         #endregion
 
 
         #region Properties
 
+
+        public PomodoroTypes TabType
+        {
+            get { return tabType; }
+            set
+            {
+                if (tabType != value)
+                {
+                    tabType = value;
+                    OnPropertyChanged(nameof(TabType));
+                }
+            }
+        }
 
         public string Name
         {
@@ -141,12 +155,14 @@ namespace Pomodoro.ViewModels
 
 
         #region ctor
-        public TabViewModel(string name ,int numOfMinutes,string message)
+        public TabViewModel(string name ,int numOfMinutes,string message,PomodoroTypes tabType)
         {
             CurrentTime = new CurrentTime(numOfMinutes);
             VisibleTime = CurrentTime.ToString();
             Message = message;
             Name = name;
+            CurrentTomato = 1;
+            TabType = tabType;
             Timer = new DispatcherTimer(DispatcherPriority.DataBind)
             {
                 Interval = TimeSpan.FromSeconds(1)
@@ -166,15 +182,16 @@ namespace Pomodoro.ViewModels
             {
                 CurrentTime.DecreaseTime();
                 VisibleTime = CurrentTime.ToString();
+                if (CurrentTime.IsOver())
+                {
+                    OnTimerDone();
+                }
             }
-            else
-            {
-                OnTimerDone();
-            }
+
 
         }
 
-        public delegate void TimerDoneEventHandler(object sender, EventArgs e);
+        public delegate void TimerDoneEventHandler(object sender, TimerEventArgs e);
         public event TimerDoneEventHandler TimerDone;
         #endregion
 
@@ -198,8 +215,25 @@ namespace Pomodoro.ViewModels
         {
             if(TimerDone != null)
             {
-                TimerDone(this, EventArgs.Empty);
+                int nextTomato = TabType == PomodoroTypes.SHORT || TabType == PomodoroTypes.LONG ? CurrentTomato + 1 : CurrentTomato;
+                PomodoroTypes nextTab = NextTab(nextTomato);
+                TimerDone(this, new TimerEventArgs(nextTab, nextTomato));
             }
+        }
+
+        private PomodoroTypes NextTab(int nextTomato)
+        {
+            bool isLongBreak = nextTomato % 4 == 0;
+            if (TabType == PomodoroTypes.POMODORO){
+                if (isLongBreak)
+                {
+                    return PomodoroTypes.LONG;
+                }
+                return PomodoroTypes.SHORT;
+             }
+           
+            return PomodoroTypes.POMODORO;
+            
         }
         public void StartTimer()
         {
@@ -222,6 +256,7 @@ namespace Pomodoro.ViewModels
         {
             CurrentTime.RefreshTime();
             StopTimer();
+            CurrentTomato = 1;
             VisibleTime = CurrentTime.ToString();
         }
         #endregion

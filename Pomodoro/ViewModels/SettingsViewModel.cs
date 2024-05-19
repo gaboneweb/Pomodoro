@@ -63,7 +63,7 @@ namespace Pomodoro.ViewModels
             FileLocation = Path.Combine(sCurrentDirectory, "UserConfig.xml");
             if (!File.Exists(FileLocation))
             {
-                File.WriteAllText(FileLocation, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Settings xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n<PomodoroTime>25</PomodoroTime>\n<ShortBreakTime>5</ShortBreakTime>\n<LongBreakTime>15</LongBreakTime>\n</Settings>");
+                File.WriteAllText(FileLocation, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Settings xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n<PomodoroTime>25</PomodoroTime>\n<ShortBreakTime>5</ShortBreakTime>\n<LongBreakTime>15</LongBreakTime>\n<AutoStart>true</AutoStart>\n</Settings>");
             }
             LoadSettings();
         }

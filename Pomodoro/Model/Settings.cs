@@ -16,6 +16,7 @@ namespace Pomodoro.Model
         private int pomodoroTime;
         private int shortBreakTime;
         private int longBreakTime;
+        private bool autoStart;
         #endregion
 
         #region properties
@@ -57,6 +58,21 @@ namespace Pomodoro.Model
                 {
                     longBreakTime = value;
                     OnPropertyChanged(nameof(LongBreakTime));
+                }
+            }
+        }
+
+
+        [XmlElement("AutoStart")]
+        public bool AutoStart
+        {
+            get { return autoStart; }
+            set
+            {
+                if (autoStart != value)
+                {
+                    autoStart = value;
+                    OnPropertyChanged(nameof(AutoStart));
                 }
             }
         }
