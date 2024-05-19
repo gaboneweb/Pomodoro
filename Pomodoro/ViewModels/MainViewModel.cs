@@ -20,6 +20,7 @@ namespace Pomodoro.ViewModels
         private SettingsViewModel settings;
         private int _selected;
         private bool settingsOpen;
+
         #endregion
 
         #region Properties
@@ -92,6 +93,7 @@ namespace Pomodoro.ViewModels
         #region events
         private void CurrTab_TimerDone(object sender, TimerEventArgs e)
         {
+            TabViewModel.RefreshTomato = false;
             Selected = (int)e.NextTab;
             if (Settings.MySettings.AutoStart)
             {
@@ -105,7 +107,7 @@ namespace Pomodoro.ViewModels
                     tab.CurrentTomato = e.NextTomato;
                 }
             }
-
+            TabViewModel.RefreshTomato = true;
 
         }
         #endregion

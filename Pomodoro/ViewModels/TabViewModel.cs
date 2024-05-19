@@ -23,8 +23,9 @@ namespace Pomodoro.ViewModels
         private string message;
         private int currentTomato;
         private PomodoroTypes tabType;
-        #endregion
 
+        #endregion
+        public  static bool RefreshTomato = true;
 
         #region Properties
 
@@ -256,7 +257,11 @@ namespace Pomodoro.ViewModels
         {
             CurrentTime.RefreshTime();
             StopTimer();
-            CurrentTomato = 1;
+            if (RefreshTomato)
+            {
+                CurrentTomato = 1;
+            }
+            
             VisibleTime = CurrentTime.ToString();
         }
         #endregion
