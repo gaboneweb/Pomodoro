@@ -11,6 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Bbd.UI">
+      <HintPath>..\..\..\..\..\sars\build\csharp\debug\Bbd.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\..\..\sars\build\csharp\debug\MaterialDesignColors.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignThemes.Wpf">
       <HintPath>..\..\..\.nuget\packages\materialdesignthemes\5.0.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>

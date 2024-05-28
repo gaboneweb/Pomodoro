@@ -6,39 +6,57 @@
              xmlns:local="clr-namespace:Pomodoro"
              mc:Ignorable="d" 
              SizeToContent="Height"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource PrimaryHueDarkBrush}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+               
              Name="settingsView"
              Title="Settings" Width="400" Height="Auto" >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    
+<Window.Resources>
+    <ResourceDictionary>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}"/>
+        </Style>
+    </ResourceDictionary>
+</Window.Resources>
+    
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="20"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="20"/>
+    </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Pomodoro Duration"/>
-        <TextBox Grid.Row="0" Grid.Column="2"  Text="{Binding MySettings.PomodoroTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+    <Label  Grid.Row="0" Grid.Column="0" Content="Pomodoro Duration"/>
+    <TextBox  Grid.Row="0" Grid.Column="2"  Text="{Binding MySettings.PomodoroTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
 
-        <Label Grid.Row="2" Grid.Column="0" Content="ShortBreak Duration"/>
-        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding MySettings.ShortBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+    <Label Grid.Row="2" Grid.Column="0" Content="ShortBreak Duration"/>
+    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding MySettings.ShortBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
         
-        <Label Grid.Row="4" Grid.Column="0" Content="LongBreak Duration"/>
-        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding MySettings.LongBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+    <Label Grid.Row="4" Grid.Column="0" Content="LongBreak Duration"/>
+    <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding MySettings.LongBreakTime,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
 
-        <Label Grid.Row="6" Grid.Column="0" Content="Auto Start Next Pomodoro"/>
-        <CheckBox Grid.Row="6" Grid.Column="2" IsChecked="{Binding MySettings.AutoStart,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
-        <Button Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" CommandParameter="{x:Reference Name=settingsView}" Command="{Binding SaveCommand}" Width="150" Height="35"  Content="Save" Margin="0,0,0,0"/>
-    </Grid>
+    <Label Grid.Row="6" Grid.Column="0" Content="Auto Start Next Pomodoro"/>
+    <CheckBox Style="{StaticResource MaterialDesign}" Grid.Row="6" Grid.Column="2" IsChecked="{Binding MySettings.AutoStart,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" />
+    <Button Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" CommandParameter="{x:Reference Name=settingsView}" Command="{Binding SaveCommand}" Width="150" Height="35"  Content="Save" Margin="0,0,0,0"/>
+</Grid>
 </Window>
