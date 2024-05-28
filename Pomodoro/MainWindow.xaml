@@ -8,12 +8,12 @@
         xmlns:viewsModels="clr-namespace:Pomodoro.ViewModels"
         d:DataContext="{d:DesignInstance Type=viewsModels:MainViewModel}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.Foreground="{DynamicResource SecondaryHueDarkBrush}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource PrimaryHueLightBrush}"
+        Background="{DynamicResource PrimaryHueDarkBrush}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="mainWindow"
         WindowStartupLocation="CenterScreen"
@@ -29,10 +29,10 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Button  Style="{StaticResource MaterialDesignOutlinedButton}" Width="Auto" Height="30" Command="{Binding RefreshCommand}" Content="Refresh" Margin="0,0,10,0"/>
-            <Button Style="{StaticResource MaterialDesignOutlinedButton}" Width="Auto" Height="30" CommandParameter="{x:Reference Name=mainWindow}" Command="{Binding ViewSettingsCommand}"  Content="Settings"/>
+            <Button   Width="Auto" Height="30" Command="{Binding RefreshCommand}" Content="Refresh" Margin="0,0,10,0"/>
+            <Button  Width="Auto" Height="30" CommandParameter="{x:Reference Name=mainWindow}" Command="{Binding ViewSettingsCommand}"  Content="Settings"/>
         </StackPanel>
-        <TabControl Style="{StaticResource MaterialDesignFilledTabControl}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding Tabs}" SelectedIndex="{Binding Selected,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" >
+        <TabControl Style="{StaticResource MaterialDesignFilledUniformTabControl}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding Tabs}" SelectedIndex="{Binding Selected,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" >
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabPanel}">
                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -60,8 +60,8 @@
                             <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="1" Style="{StaticResource MaterialDesignTextBlock}"  FontSize="100" TextAlignment="Center" Width="Auto" Height="Auto" Text="{Binding VisibleTime, UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" />
-                        <Button Grid.Row="3" Height="50" Visibility="{Binding StartVisibility,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Command="{Binding StartCommand}" Width="150" Content="Start"/>
-                        <Button Grid.Row="3" Height="50" Visibility="{Binding StopVisibility,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Command="{Binding StopCommand}" Width="150" Content="Stop"/>
+                        <Button  Grid.Row="3" Height="50" Visibility="{Binding StartVisibility,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Command="{Binding StartCommand}" Width="150" Content="Start"/>
+                        <Button  Grid.Row="3" Height="50" Visibility="{Binding StopVisibility,UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Command="{Binding StopCommand}" Width="150" Content="Stop"/>
                         <TextBlock Grid.Row="5" HorizontalAlignment="Center" Text="{Binding CurrentTomato,StringFormat='#{0}', UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Width="Auto"/>
                         <TextBlock Grid.Row="7" HorizontalAlignment="Center" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged,NotifyOnSourceUpdated=True}" Width="Auto"/>
                                                                                                      
