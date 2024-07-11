@@ -17,7 +17,8 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Name="mainWindow"
         WindowStartupLocation="CenterScreen"
-        Title="Pomodoro" Height="500" Width="400">
+        Title="Pomodoro" Height="500" Width="400"
+        Icon="timer.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
